@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+}
+
+<div class="card">
+    <div class="card-header">
+        Crear Post
+    </div>
+    <div class="card-body">
+        @using (Html.BeginForm("Store", "Post", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="form-group">
+                <label>Titulo</label>
+                @Html.TextBox("title", "", new { @class = "form-control", required = "required" })
+            </div>
+            <div class="form-group">
+                <label>Descripcion</label>
+                @Html.TextArea("description", "", new { @class = "form-control", required = "required" })
+            </div>
+            <div class="form-group">
+                <label>Imagen</label>
+                @Html.TextBox("image", "", new { @class = "form-control", required = "required", type = "file" })
+            </div>
+            <input type="submit" value="Subir" class="btn btn-primary" />
+        }
+    </div>
+</div>
+

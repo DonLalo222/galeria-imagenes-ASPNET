@@ -1,0 +1,108 @@
+﻿@model GaleriaTestMVC.Models.ViewPostWithCommentaries
+@{
+    ViewBag.Title = "Show";
+}
+@if (ViewBag.Msg != null)
+{
+    <div class="alert alert-success">
+        @ViewBag.Msg
+    </div>
+}
+<div card>
+    <div class="card-header">
+        Detalles del Post
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col text-center">
+                <img src="@Model.Post.UrlImage" alt="@Model.Post.Title" style="width: 320px; height: 320px;" class="rounded img-thumbnail" />
+            </div>
+            <div class="col">
+                <div class="card border-info">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label>Titulo</label>
+                            @Html.Label(Model.Post.Title, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            <label>Descripcion</label>
+                            @Html.Label(Model.Post.Description, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            <label>Fecha de Creacion</label>
+                            @Html.Label(Model.Post.Creation.ToString("dd/MM/yyyy"), new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <!-- comentarios -->
+        <div class="row">
+            <div class="col">
+                <div class="card border-success">
+                    <div class="card-header">
+                        Ultimos Comentarios
+                    </div>
+                    <div class="card-body overflow-auto">
+
+                        @foreach (var item in Model.Commentaries)
+                        {
+                            @item.Commentary
+                            <p class="text-muted"> publicado el: @item.Creation.ToString("dd/MM/yyyy")</p>
+                            <hr />
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <!-- -->
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                    Comentar
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalCenterTitle">Comentario</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                @if (Session["idUser"] == null)
+                                {
+                                <div class="text-center">
+                                    <p>Debe iniciar session para comentar.</p>
+                                    @Html.ActionLink("Registrarme", "Create", "Account") ó 
+                                    @Html.ActionLink("Logearme", "Login", "Account")
+                                </div>
+                                    
+                                }
+                                else
+                                {
+                                    using (Html.BeginForm("Store", "Commentary", FormMethod.Post))
+                                    {
+                                        @Html.Hidden("idPost", Model.Post.Id)
+                                        <div class="form-group">
+                                            <label>Escribir</label>
+                                            @Html.TextArea("commentary", new { @class = "form-control" })
+                                        </div>
+                                        <input type="submit" value="Guardar!" class="btn btn-primary" />
+                                    }
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- -->
+            </div>
+        </div>
+
+    </div>
+</div>
+

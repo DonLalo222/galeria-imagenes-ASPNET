@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body class="bg-light">
+    <!-- -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Galeria de Imagenes</a>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    @Html.ActionLink("Inicio", "Index", "Post", null, new { @class = "nav-link" })
+                </li>
+                @if (Session["email"] != null)
+                {
+                    <li class="nav-item">
+                        @Html.ActionLink("Mis Imagenes", "MyPosts", "User", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Publicar!", "Create", "Post", null, new { @class = "nav-link" })
+                    </li>
+                }
+
+            </ul>
+            <div class=" my-2 my-lg-0">
+                <ul class="navbar-nav mr-auto">
+                    @if (Session["email"] != null)
+                    {
+                        <li class="nav-item">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Opciones
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    @Html.ActionLink("Actualizar Mis Datos", "Update", "Account", null, new { @class = "dropdown-item" })
+                                    @using (Html.BeginForm("Logout", "Account", FormMethod.Post))
+                                    {
+                                        <button class="dropdown-item" type="submit">Logout</button>
+                                    }
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <p class="nav-link font-weight-bold">@Session["email"].ToString()</p>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            @Html.ActionLink("Registrarse", "Create", "Account", null, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Login", "Login", "Account", null, new { @class = "nav-link" })
+                        </li>
+                    }
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <br />
+    <div class="container">
+        @RenderBody()
+    </div>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

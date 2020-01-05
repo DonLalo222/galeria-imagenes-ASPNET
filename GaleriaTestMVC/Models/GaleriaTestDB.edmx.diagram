@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d7ddc3e772e04bb49b2f30f117c98f0a" Name="Diagram1">
+        <EntityTypeShape EntityType="GaleriaTestDBModel.Commentaries" Width="1.5" PointX="5.25" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GaleriaTestDBModel.Posts" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GaleriaTestDBModel.Users" Width="1.5" PointX="0.75" PointY="2.625" IsExpanded="true" />
+        <AssociationConnector Association="GaleriaTestDBModel.FK__Commentar__PostI__4E88ABD4" ManuallyRouted="false" />
+        <AssociationConnector Association="GaleriaTestDBModel.FK__Commentar__UserI__4F7CD00D" ManuallyRouted="false" />
+        <AssociationConnector Association="GaleriaTestDBModel.FK__Posts__UserId__4BAC3F29" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

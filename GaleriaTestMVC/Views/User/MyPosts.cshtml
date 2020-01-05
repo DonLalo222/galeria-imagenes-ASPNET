@@ -1,0 +1,39 @@
+﻿@model PagedList.IPagedList<GaleriaTestMVC.Models.Posts>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "MyPosts";
+}
+@if (ViewBag.Msg != null)
+{
+    <div class="alert alert-success">
+        @ViewBag.Msg
+    </div>
+}
+<div class="card-deck">
+    @foreach (var item in Model)
+    {
+        <div class="card">
+            <img src="@item.UrlImage" alt="@item.Title" class="rounded card-img-top img-fluid" />
+            <div class="card-body">
+                <h5 class="card-title">@item.Title</h5>
+                <p class="card-text">
+
+                </p>
+            </div>
+            <div class="card-footer">
+                @Html.ActionLink("Ir a la publicacion", "Show", "Post", new { id = item.Id }, null)
+            </div>
+        </div>
+    }
+</div>
+<hr />
+<!-- Pagination -->
+            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+            <nav>
+                @Html.PagedListPager(Model, page => Url.Action("MyPosts",
+                new { page = page }), new PagedListRenderOptions()
+                    {
+                    ContainerDivClasses = null,
+                    LiElementClasses = new string[] { "page-item", "page-link" }
+                })
+            </nav>
