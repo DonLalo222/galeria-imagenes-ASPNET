@@ -7,7 +7,7 @@ namespace GaleriaTestMVC.Models
 {
     public static class Seguridad
     {
-        /// Encripta una cadena
+        // Encripta una cadena
         public static string Encriptar(this string _cadenaAencriptar)
         {
             string result = string.Empty;
@@ -16,7 +16,8 @@ namespace GaleriaTestMVC.Models
             return result;
         }
 
-        /// Esta función desencripta la cadena que le envíamos en el parámentro de entrada.
+        // Esta función desencripta la cadena que le envíamos en el parámentro de entrada.
+	// Funcionalidad a modo de prueba.
         public static string DesEncriptar(this string _cadenaAdesencriptar)
         {
             string result = string.Empty;
